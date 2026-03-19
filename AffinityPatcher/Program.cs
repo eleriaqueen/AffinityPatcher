@@ -16,7 +16,7 @@ namespace AffinityPatcher
         static async Task<int> Main(string[] args)
         {
             var rootCommand =
-                new RootCommand("Universal application patcher for Affinity v3.x/v2.x/v1.x products and DxO PhotoLab.");
+                new RootCommand("Universal application patcher for Affinity series of products (v1.x ~ v3.x).");
 
             var inputOptions = new Option<DirectoryInfo?>("--input",
                     description: "Target application directory (i.e., path containing the main executable).")
@@ -115,7 +115,12 @@ namespace AffinityPatcher
                 var serifApplicationType = module.Types.FirstOrDefault(x => x.FullName == serifApplicationTypeName);
 
                 var methodsToPatchAsTrue = serifApplicationType?.Methods.Where(x =>
-                    x.Name == "HasEntitlementToRun" || x.Name == "CheckEula" || x.Name == "CheckAnalytics");
+                    x.Name == "CheckProductKey" || // v1
+                    x.Name == "HasEntitlementToRun" || 
+                    x.Name == "CheckEula" || 
+                    x.Name == "CheckAnalytics" || 
+                    x.Name == "get_HasSubscriptionLicence" || 
+                    x.Name == "IsEphemerallyLicensed");
 
                 if (methodsToPatchAsTrue != null)
                 {
@@ -132,7 +137,12 @@ namespace AffinityPatcher
                     }
                 }
 
-                var methodsToPatchAsFalse = serifApplicationType?.Methods.Where(x => x.Name == "get_AllowsOptInAnalytics" || x.Name == "HasCrashReports");
+                var methodsToPatchAsFalse = serifApplicationType?.Methods.Where(x =>
+                    x.Name == "BetaExpiredCheck" || // v1
+                    x.Name == "IsProductKeyRequired" || // v1
+                    x.Name == "get_AllowsOptInAnalytics" || 
+                    x.Name == "HasCrashReports" ||
+                    x.Name == "get_HasNetworkConnectivity");
                 if (methodsToPatchAsFalse != null)
                 {
                     foreach (var method in methodsToPatchAsFalse)
