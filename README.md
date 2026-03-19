@@ -1,10 +1,7 @@
 
 # AffinityPatcher
 
-Simple application for patching license activation amongst Affinity v3.x/v2.x.
-
-> [!NOTE]  
-> v1.x is currently unsupported. Support may be added in the future. See [#14](https://github.com/Still34/AffinityPatcher/issues/14).
+Simple application for patching license activation amongst Affinity v3.x/v2.x/v1.x.
 
 ## Supported Platforms
 
@@ -50,7 +47,7 @@ Simple application for patching license activation amongst Affinity v3.x/v2.x.
 
 ```
 Description:
-  Universal application patcher for Affinity v3.x/v2.x/v1.x products and DxO PhotoLab.
+  Universal application patcher for Affinity series of products (v1.x ~ v3.x).
 
 Usage:
   AffinityPatcher [options]
