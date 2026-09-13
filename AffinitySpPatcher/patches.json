@@ -1,0 +1,13 @@
+[
+  {
+    "modules": ["libacs.dll"],
+    "pattern": "48 89 5C 24 20 55 56 57 41 54 41 55 41 56 41 57 48 8D 6C 24 F0 48 81 EC ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 45 ? 44 89 4C 24 50 49 8B C0 48 89 44 24 60 89 54 24 58 48 8B F9",
+    "replacement": "C3",
+    "min_matches": 1,
+    "max_matches": 1,
+    "is_code": true,
+    "on_initialize": true,
+    "on_before_dllmain": true,
+    "allowed_to_fail": false
+  }
+]
